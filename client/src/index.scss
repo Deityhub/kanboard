@@ -30,6 +30,21 @@ fieldset {
   border: none;
 }
 
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  background: #80808066;
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn {
   font-size: 2rem;
   text-align: center;

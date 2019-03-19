@@ -48,7 +48,7 @@ class Boards extends Component {
       this.setState({
         errorOpen: false
       });
-    }, 3000);
+    }, 5000);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -70,7 +70,7 @@ class Boards extends Component {
       <div className="board">
         <Nav />
 
-        {errorOpen && (
+        {errorOpen && error && (
           <aside className="board__error">
             <p>{error}</p>
           </aside>
@@ -107,7 +107,13 @@ class Boards extends Component {
               </>
             )}
 
-            {loading && <Loader />}
+            {loading && (
+              <div className="loading">
+                <span className="loading__content">
+                  <Loader />
+                </span>
+              </div>
+            )}
           </aside>
         </section>
       </div>

@@ -90,7 +90,7 @@ class Processes extends Component {
       this.setState({
         errorOpen: false
       });
-    }, 3000);
+    }, 5000);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -112,7 +112,7 @@ class Processes extends Component {
       <div className="process">
         <Nav />
 
-        {errorOpen && (
+        {errorOpen && error && (
           <aside className="board__error">
             <p>{error}</p>
           </aside>
@@ -170,7 +170,14 @@ class Processes extends Component {
                 </div>
               </>
             )}
-            <div className="process__card process__card--transparent">{loading && <Loader />}</div>
+
+            {loading && (
+              <div className="loading">
+                <span className="loading__content">
+                  <Loader />
+                </span>
+              </div>
+            )}
           </div>
         </section>
       </div>
