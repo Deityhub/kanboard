@@ -14,7 +14,7 @@ class Nav extends Component {
   }
 
   render() {
-    let { user, loading, logoutUser } = this.props;
+    let { user, logoutUser, logOut } = this.props;
 
     return (
       <>
@@ -25,7 +25,7 @@ class Nav extends Component {
           {(user.name || user.username) && (
             <div className="nav__user">
               <span>Welcome {user.name || user.username}!</span>
-              <span onClick={() => logoutUser()}>log{loading ? "ging out..." : "out"}</span>
+              <span onClick={() => logoutUser()}>log{logOut ? "ging out..." : "out"}</span>
             </div>
           )}
         </nav>
@@ -41,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   user: state.login.user,
-  loading: state.login.loading
+  logOut: state.login.logOut
 });
 
 export default connect(

@@ -5,7 +5,8 @@ const initialState = {
   loggedIn: false,
   loading: false,
   error: "",
-  message: ""
+  message: "",
+  logOut: false
 };
 
 const login = (state = initialState, action) => {
@@ -61,21 +62,24 @@ const login = (state = initialState, action) => {
         loading: true,
         error: "",
         message: action.payload,
-        loggedIn: false
+        loggedIn: false,
+        logOut: false
       };
     case LOGOUT_USER_START:
       return {
         ...state,
         loading: true,
         error: "",
-        message: action.payload
+        message: action.payload,
+        logOut: true
       };
     case LOGOUT_USER_ERROR:
       return {
         ...state,
         loading: true,
         error: "",
-        message: action.payload
+        message: action.payload,
+        logOut: false
       };
     default:
       return state;
