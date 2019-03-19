@@ -105,7 +105,7 @@ class Processes extends Component {
   }
 
   render() {
-    let { board, loading, error } = this.props;
+    let { board, loading, error, gettingBoard } = this.props;
     let { title, name, updateBoardOpen, createProcessOpen, errorOpen } = this.state;
 
     return (
@@ -118,54 +118,59 @@ class Processes extends Component {
           </aside>
         )}
 
-        {loading && <Loader />}
-
         <section className="process__content">
-          <header>
-            {board.name}
-            {updateBoardOpen ? (
-              <form>
-                <input type="text" value={name} onChange={this.handleChange} name="name" required autoFocus />
-                <button type="submit" onClick={this.updateBoard}>
-                  Update name
-                </button>
-                <button onClick={this.toggleUpdateBoard}>Cancel</button>
-              </form>
-            ) : (
-              <span onClick={this.toggleUpdateBoard}>edit</span>
-            )}
-          </header>
-
-          <div>
-            {board.processes &&
-              board.processes.map(process => (
-                <div className="process__card" key={process._id} onDrop={e => this.onDrop(e, process._id)} onDragOver={this.onDragOver}>
-                  <aside>
-                    <ProcessNav process={process} board={this.boardId} />
-
-                    {process.tasks.map(eachTask => (
-                      <aside className="card__list" key={eachTask._id} draggable onDragStart={e => this.onDragStart(e, eachTask._id)}>
-                        <span>{eachTask.task}</span>
-                        <span onClick={() => this.props.deleteUserTask(process._id, eachTask._id)}>Delete</span>
-                      </aside>
-                    ))}
-                  </aside>
-
-                  <CreateTask process={process} />
-                </div>
-              ))}
-
-            <div className="process__card">
-              {createProcessOpen ? (
-                <form onSubmit={this.createProcess}>
-                  <input type="text" value={title} onChange={this.handleChange} name="title" required autoFocus />
-                  <button type="submit">Create Process</button>
-                  <button onClick={this.toggleCreateProcess}>Cancel</button>
+          {!gettingBoard && (
+            <header>
+              {board.name}
+              {updateBoardOpen ? (
+                <form>
+                  <input type="text" value={name} onChange={this.handleChange} name="name" required autoFocus />
+                  <button type="submit" onClick={this.updateBoard}>
+                    Update name
+                  </button>
+                  <button onClick={this.toggleUpdateBoard}>Cancel</button>
                 </form>
               ) : (
-                <p onClick={this.toggleCreateProcess}>create process</p>
+                <span onClick={this.toggleUpdateBoard}>edit</span>
               )}
-            </div>
+            </header>
+          )}
+
+          <div>
+            {!gettingBoard && (
+              <>
+                {board.processes &&
+                  board.processes.map(process => (
+                    <div className="process__card" key={process._id} onDrop={e => this.onDrop(e, process._id)} onDragOver={this.onDragOver}>
+                      <aside>
+                        <ProcessNav process={process} board={this.boardId} />
+
+                        {process.tasks.map(eachTask => (
+                          <aside className="card__list" key={eachTask._id} draggable onDragStart={e => this.onDragStart(e, eachTask._id)}>
+                            <span>{eachTask.task}</span>
+                            <span onClick={() => this.props.deleteUserTask(process._id, eachTask._id)}>Delete</span>
+                          </aside>
+                        ))}
+                      </aside>
+
+                      <CreateTask process={process} />
+                    </div>
+                  ))}
+
+                <div className="process__card">
+                  {createProcessOpen ? (
+                    <form onSubmit={this.createProcess}>
+                      <input type="text" value={title} onChange={this.handleChange} name="title" required autoFocus />
+                      <button type="submit">Create Process</button>
+                      <button onClick={this.toggleCreateProcess}>Cancel</button>
+                    </form>
+                  ) : (
+                    <p onClick={this.toggleCreateProcess}>create process</p>
+                  )}
+                </div>
+              </>
+            )}
+            <div className="process__card process__card--transparent">{loading && <Loader />}</div>
           </div>
         </section>
       </div>
@@ -186,7 +191,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   board: state.dashboard.particularBoard,
   loading: state.dashboard.loading,
-  error: state.dashboard.error
+  error: state.dashboard.error,
+  gettingBoard: state.dashboard.getBoard
 });
 
 export default connect(

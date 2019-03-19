@@ -80,6 +80,10 @@
     flex-direction: column;
     justify-content: space-between;
 
+    &--transparent {
+      background-color: transparent;
+    }
+
     & > p {
       cursor: pointer;
       text-decoration: underline;
