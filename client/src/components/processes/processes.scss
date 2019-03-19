@@ -1,0 +1,249 @@
+.process {
+  width: 100%;
+  margin-top: 9rem;
+
+  & > * {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > header {
+      font-size: 2rem;
+      text-transform: capitalize;
+      color: #bfc0c0;
+      margin-bottom: 2rem;
+      width: 60rem;
+
+      & > span {
+        text-transform: none;
+        font-size: 1.4rem;
+        text-decoration: underline;
+        margin-left: 2rem;
+        cursor: pointer;
+      }
+
+      & > form {
+        display: inline-block;
+        margin-left: 2rem;
+
+        & > input {
+          background: #fff;
+          border: none;
+          border-radius: 5px;
+          padding: 1rem;
+          font-size: 1.5rem;
+          color: #2d3142;
+        }
+
+        & > button {
+          padding: 1rem;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5rem;
+          margin-left: 1rem;
+          background: #bfc0c0;
+          color: #4f5d75;
+          cursor: pointer;
+
+          &:last-child {
+            background: transparent;
+            border: 1px solid #ef8354;
+            color: tomato;
+          }
+        }
+      }
+    }
+
+    & > div {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      align-items: flex-start;
+    }
+  }
+
+  &__card {
+    // max-height: 100vh;
+    border-radius: 5px;
+    background-color: #bfc0c0;
+    font-size: 1.7rem;
+    width: 30rem;
+    margin-right: 2rem;
+    padding: 2rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & > p {
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 1.5rem;
+    }
+
+    & > form {
+      display: inline-block;
+      width: 100%;
+
+      & > input {
+        display: inline-block;
+        width: 100%;
+        background: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: #2d3142;
+        height: 3rem;
+      }
+
+      & > button {
+        padding: 0.6rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        background: #4f5d75;
+        color: #bfc0c0;
+        cursor: pointer;
+        margin-top: 0.6rem;
+
+        &:last-child {
+          background: transparent;
+          border: 1px solid #ef8354;
+          color: tomato;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.card__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+
+  & > aside {
+    & span {
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1.4rem;
+
+      &:last-child {
+        color: #ef8354;
+      }
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  & > form {
+    width: 100%;
+
+    & > input {
+      display: inline-block;
+      width: 100%;
+      background: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 1rem;
+      font-size: 1.5rem;
+      color: #2d3142;
+    }
+
+    & > button {
+      padding: 0.6rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      background: #4f5d75;
+      color: #bfc0c0;
+      cursor: pointer;
+      margin-top: 0.6rem;
+
+      &:last-child {
+        background: transparent;
+        border: 1px solid #ef8354;
+        color: tomato;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.card__list {
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1.5rem;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
+  & > span {
+    display: inline-block;
+    width: 100%;
+
+    &:last-child {
+      text-align: right;
+      cursor: pointer;
+      color: #ef8354;
+      text-decoration: underline;
+    }
+  }
+}
+
+.card__add {
+  & > span {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.4rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  & > form {
+    display: inline-block;
+    width: 100%;
+
+    & > textarea {
+      display: inline-block;
+      width: 100%;
+      background: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 1rem;
+      font-size: 1.5rem;
+      color: #2d3142;
+      height: 10rem;
+    }
+
+    & > button {
+      padding: 0.6rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      background: #4f5d75;
+      color: #bfc0c0;
+      cursor: pointer;
+      margin-top: 0.6rem;
+
+      &:last-child {
+        background: transparent;
+        border: 1px solid #ef8354;
+        color: tomato;
+        margin-left: 1rem;
+      }
+    }
+  }
+}

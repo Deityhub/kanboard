@@ -1,0 +1,144 @@
+.board {
+  width: 100%;
+  margin-top: 9rem;
+
+  &__error {
+    border: 2px solid tomato;
+    border-radius: 5px;
+    position: absolute;
+    top: 40px;
+    right: 2px;
+    z-index: 2000;
+    width: 30rem;
+    background: tomato;
+    color: white;
+    hyphens: auto;
+    padding: 0;
+
+    & > p {
+      padding: 1rem 0;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+  }
+
+  & > * {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    & > header {
+      font-size: 2rem;
+      text-transform: capitalize;
+      color: #bfc0c0;
+      margin-bottom: 2rem;
+    }
+
+    & > aside {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 2rem;
+      align-items: flex-start;
+
+      @media (max-width: 980px) {
+        & {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 800px) {
+        & {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 650px) {
+        & {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 400px) {
+        & {
+          grid-template-columns: repeat(1, 1fr);
+          grid-gap: 1rem;
+        }
+      }
+    }
+  }
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1.7rem;
+    position: relative;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    hyphens: auto;
+
+    & > span {
+      &:first-child {
+        padding: 1.8rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    &--delete {
+      position: absolute;
+      top: 0px;
+      right: 3px;
+      font-size: 1.5rem;
+      color: #ef8354;
+    }
+
+    &:last-child {
+      text-decoration: underline;
+    }
+
+    &--form {
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+      align-items: flex-start;
+
+      & textarea {
+        width: 100%;
+        height: 6rem;
+        padding: 1rem;
+        background: #fff;
+        color: #2d3142;
+        border: none;
+        border-radius: 5px;
+      }
+
+      & button {
+        background-color: #bfc0c0;
+        border: 1px solid #bfc0c0;
+        border-radius: 5px;
+        color: #2d3142;
+        font-size: 1.3rem;
+        padding: 0.6rem;
+        cursor: pointer;
+
+        &:last-child {
+          margin-left: 1rem;
+          color: tomato;
+          background-color: transparent;
+          border: 1px solid #ef8354;
+        }
+      }
+    }
+  }
+}

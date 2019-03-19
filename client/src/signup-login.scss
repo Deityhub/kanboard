@@ -1,0 +1,78 @@
+.form-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+
+  &__error {
+    border: 2px solid tomato;
+    border-radius: 5px;
+
+    & > p {
+      padding: 1rem;
+      font-size: 1.7rem;
+    }
+  }
+
+  &__form {
+    width: 40rem;
+
+    & > h2 {
+      font-size: 3rem;
+      @media (max-width: 400px) {
+        & {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    @media (max-width: 400px) {
+      & {
+        width: 30rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      & {
+        width: 35rem;
+      }
+    }
+  }
+
+  &__fieldset {
+    & > div {
+      margin-bottom: 2rem;
+
+      & > * {
+        display: block;
+        width: 100%;
+      }
+
+      & > label {
+        font-size: 2rem;
+        @media (max-width: 400px) {
+          & {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      & > input {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: 5rem;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        background-color: #fff;
+        color: #0b0c0c;
+      }
+    }
+
+    & > span {
+      margin-top: 1rem;
+      display: block;
+    }
+  }
+}

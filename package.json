@@ -1,0 +1,25 @@
+{
+  "name": "kanboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "start-watch": "nodemon server.js",
+    "client-build": "cd client && yarn run build",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
+  },
+  "keywords": [],
+  "author": "Ojini Chizoba Jude",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0"
+  }
+}
