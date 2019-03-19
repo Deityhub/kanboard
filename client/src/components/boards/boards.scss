@@ -1,6 +1,5 @@
 .board {
   width: 100%;
-  margin-top: 9rem;
 
   &__error {
     border: 2px solid tomato;
@@ -30,6 +29,7 @@
   &__content {
     display: flex;
     flex-direction: column;
+    margin-top: 9rem;
 
     & > header {
       font-size: 2rem;
