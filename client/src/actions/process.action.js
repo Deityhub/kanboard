@@ -71,7 +71,11 @@ export const createUserProcess = (details, boardId) => dispatch => {
 export const modifyUserProcess = (details, processId) => dispatch => {
   dispatch({
     type: EDIT_PROCESS_START,
-    payload: `Editing process with id ${processId}`
+    payload: {
+      message: `Editing process with id ${processId}`,
+      details,
+      processId
+    }
   });
 
   axios({
@@ -92,10 +96,6 @@ export const modifyUserProcess = (details, processId) => dispatch => {
         type: EDIT_PROCESS,
         payload: res.data
       });
-
-      // find a way to populate the process or
-      // refetch that particular board or process
-      // getProcessByBoard(boardId)(dispatch);
     })
     .catch(err =>
       dispatch({
@@ -106,7 +106,13 @@ export const modifyUserProcess = (details, processId) => dispatch => {
 };
 
 export const deleteUserProcess = (processId, boardId) => dispatch => {
-  dispatch({ type: DELETE_PROCESS_START, payload: `process with the id ${processId} about to be deleted` });
+  dispatch({
+    type: DELETE_PROCESS_START,
+    payload: {
+      message: `process with the id ${processId} about to be deleted`,
+      processId
+    }
+  });
 
   axios({
     method: "delete",
@@ -125,10 +131,6 @@ export const deleteUserProcess = (processId, boardId) => dispatch => {
         type: DELETE_PROCESS,
         payload: res.data
       });
-
-      // find a way to populate the process or
-      // refetch that particular board or process
-      // getProcessByBoard(boardId)(dispatch);
     })
     .catch(err =>
       dispatch({

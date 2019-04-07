@@ -38,7 +38,11 @@ export const createUserTask = (task, processId) => dispatch => {
 export const editUserTask = (processId, taskId) => dispatch => {
   dispatch({
     type: EDIT_TASK_START,
-    payload: `Task with id ${taskId} is being edited...`
+    payload: {
+      message: `Task with id ${taskId} is being edited...`,
+      processId,
+      taskId
+    }
   });
 
   axios({
@@ -70,7 +74,11 @@ export const editUserTask = (processId, taskId) => dispatch => {
 export const deleteUserTask = (processId, taskId) => dispatch => {
   dispatch({
     type: DELETE_TASK_START,
-    payload: `Task with the id ${taskId} about to be deleted...`
+    payload: {
+      message: `Task with the id ${taskId} about to be deleted...`,
+      processId,
+      taskId
+    }
   });
 
   axios

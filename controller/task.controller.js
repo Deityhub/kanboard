@@ -44,7 +44,9 @@ exports.modifyTask = asyncHandler(async (req, res, next) => {
   const newProcess = await Process.findById(req.params.processId);
   if (!newProcess) throw new Error("This process does not exist");
 
-  if (newProcess.tasks.indexOf(req.params.taskId) >= 0) throw new Error(`Task with the id ${req.params.taskId} already exist in this process`);
+  // if (oldProcess.toString() === newProcess.toString()) return res.json({ message: "Process is up to date" });
+
+  // if (newProcess.tasks.indexOf(req.params.taskId) >= 0) throw new Error(`Task with the id ${req.params.taskId} already exist in this process`);
 
   oldProcess.tasks = oldProcess.tasks.filter(task => task.toString() !== req.params.taskId.toString());
 

@@ -85,7 +85,14 @@ export const createUserBoard = details => dispatch => {
 };
 
 export const modifyUserBoard = (details, boardId) => dispatch => {
-  dispatch({ type: EDIT_BOARD_START, payload: `board with the id ${boardId} about to be modified` });
+  dispatch({
+    type: EDIT_BOARD_START,
+    payload: {
+      message: `board with the id ${boardId} about to be modified`,
+      details,
+      boardId
+    }
+  });
 
   axios({
     method: "put",
@@ -115,7 +122,13 @@ export const modifyUserBoard = (details, boardId) => dispatch => {
 };
 
 export const deleteUserBoard = boardId => dispatch => {
-  dispatch({ type: DELETE_BOARD_START, payload: `board with the id ${boardId} about to be deleted` });
+  dispatch({
+    type: DELETE_BOARD_START,
+    payload: {
+      message: `board with the id ${boardId} about to be deleted`,
+      boardId
+    }
+  });
 
   axios({
     method: "delete",

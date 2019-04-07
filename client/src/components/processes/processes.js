@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getBoard, modifyUserBoard } from "../../actions/board.action";
 import { createUserProcess, modifyUserProcess } from "../../actions/process.action";
 import { createUserTask, deleteUserTask, editUserTask } from "../../actions/task.action";
+import { logoutUser } from "../../actions/login.action";
 import CreateTask from "../tasks/createTask";
 import ProcessNav from "./process-nav";
 import Nav from "../navigation/nav";
@@ -108,6 +109,10 @@ class Processes extends Component {
     let { board, loading, error, gettingBoard } = this.props;
     let { title, name, updateBoardOpen, createProcessOpen, errorOpen } = this.state;
 
+    if (error == "You need to login") {
+      this.props.logoutUser();
+    }
+
     return (
       <div className="process">
         <Nav />
@@ -186,6 +191,7 @@ class Processes extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(logoutUser()),
   getBoard: boardId => dispatch(getBoard(boardId)),
   modifyUserBoard: (details, boardId) => dispatch(modifyUserBoard(details, boardId)),
   createUserProcess: (details, boardId) => dispatch(createUserProcess(details, boardId)),

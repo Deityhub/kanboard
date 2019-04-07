@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserBoard, createUserBoard, deleteUserBoard } from "../../actions/board.action";
+import { logoutUser } from "../../actions/login.action";
 import Nav from "../navigation/nav";
 import Loader from "../loader";
 import "./boards.scss";
@@ -66,6 +67,10 @@ class Boards extends Component {
     let { userBoards, loading, error, getBoards } = this.props;
     let { name, formOpen, errorOpen } = this.state;
 
+    if (error == "You need to login") {
+      this.props.logoutUser();
+    }
+
     return (
       <div className="board">
         <Nav />
@@ -122,6 +127,7 @@ class Boards extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(logoutUser()),
   getUserBoards: () => dispatch(getUserBoard()),
   createUserBoard: details => dispatch(createUserBoard(details)),
   deleteUserBoard: boardId => dispatch(deleteUserBoard(boardId))
