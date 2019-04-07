@@ -16,7 +16,8 @@ class Processes extends Component {
     name: this.props.board.name,
     task: "",
     updateBoardOpen: false,
-    createProcessOpen: false
+    createProcessOpen: false,
+    errorOpen: false
   };
 
   boardId = this.props.match.params.boardId;
@@ -85,9 +86,23 @@ class Processes extends Component {
     this.props.editUserTask(processId, taskId);
   };
 
+  closeModal = () => {
+    this.setState({
+      errorOpen: false
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.error !== this.props.error) {
+      this.setState({
+        errorOpen: true
+      });
+    }
+  }
+
   render() {
     let { board, loading, error, gettingBoard } = this.props;
-    let { title, name, updateBoardOpen, createProcessOpen } = this.state;
+    let { title, name, updateBoardOpen, createProcessOpen, errorOpen } = this.state;
 
     if (error == "You need to login") {
       this.props.logoutUser();
@@ -97,7 +112,16 @@ class Processes extends Component {
       <div className="process">
         <Nav />
 
-        {error && alert(error)}
+        {errorOpen && error && (
+          <div className="modal" onClick={this.closeModal}>
+            <div className="modal__content">
+              <span className="close" onClick={this.closeModal}>
+                &times;
+              </span>
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
 
         <section className="process__content">
           {!gettingBoard && (

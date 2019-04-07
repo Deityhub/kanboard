@@ -9,8 +9,10 @@ import "./boards.scss";
 class Boards extends Component {
   state = {
     name: "",
-    formOpen: false
+    formOpen: false,
+    errorOpen: false
   };
+
   componentDidMount() {
     let loggedIn = localStorage.getItem("kanboarding");
     if (!loggedIn) {
@@ -43,9 +45,23 @@ class Boards extends Component {
     }));
   };
 
+  closeModal = () => {
+    this.setState({
+      errorOpen: false
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.error !== this.props.error) {
+      this.setState({
+        errorOpen: true
+      });
+    }
+  }
+
   render() {
     let { userBoards, loading, error, getBoards } = this.props;
-    let { name, formOpen } = this.state;
+    let { name, formOpen, errorOpen } = this.state;
 
     if (error == "You need to login") {
       this.props.logoutUser();
@@ -55,7 +71,16 @@ class Boards extends Component {
       <div className="board">
         <Nav />
 
-        {error && alert(error)}
+        {errorOpen && error && (
+          <div className="modal" onClick={this.closeModal}>
+            <div className="modal__content">
+              <span className="close" onClick={this.closeModal}>
+                &times;
+              </span>
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
 
         <section className="board__content">
           <header>Personal Boards</header>

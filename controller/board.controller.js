@@ -45,9 +45,15 @@ exports.editUserBoard = asyncHandler(async (req, res, next) => {
   });
   if (!board) throw new Error("Board not found or does not exist");
 
+  if (!req.body.name.trim().length > 0) throw new Error("Board name should not be empty");
+
+  let name = capitalize(req.body.name);
+  let nameExist = await Board.findOne({ name, user: req.userId });
+  if (nameExist) throw new Error("Board with this name already created by this user, try another one");
+
   board.name = req.body.name;
   board.save((err, result) => {
-    if (err) next(err);
+    if (err) throw new Error(err);
 
     res.json({ message: `Board with id ${result._id} updated successfully`, board });
   });

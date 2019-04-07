@@ -11,7 +11,7 @@ exports.createProcess = asyncHandler(async (req, res, next) => {
 
   let title = capitalize(req.body.title);
   let processExist = await Process.findOne({ title, board: req.params.boardId });
-  if (processExist) throw new Error("Process with this title already created by on this board, try another one");
+  if (processExist) throw new Error("Process with this title already created on this board, try another one");
 
   const process = await Process.create({ title: req.body.title, board: req.params.boardId });
   const board = await Board.findById(req.params.boardId);
@@ -69,7 +69,7 @@ exports.deleteUserProcess = asyncHandler(async (req, res, next) => {
 
   if (done) {
     board.save(async err => {
-      if (err) next(err);
+      if (err) throw new Error(err);
 
       const deletedProcess = await Process.findByIdAndDelete(req.params.processId);
       if (deletedProcess) res.json({ message: "Process deleted successfully!", deletedProcess });
@@ -80,12 +80,18 @@ exports.deleteUserProcess = asyncHandler(async (req, res, next) => {
 exports.modifyProcess = asyncHandler(async (req, res, next) => {
   if (!req.user) throw new Error("To modify your process, you need to log in");
 
+  if (!req.body.title.trim().length > 0) throw new Error("Process title should not be empty");
+
   const process = await Process.findById(req.params.processId).populate("tasks");
   if (!process) throw new Error("Process does not exist");
 
+  let title = capitalize(req.body.title);
+  let processExist = await Process.findOne({ title, board: process.board });
+  if (processExist) throw new Error("Process with this title already created on this board, try another one");
+
   process.title = req.body.title;
-  process.save((err, result) => {
-    if (err) next(err);
+  process.save(err => {
+    if (err) throw new Error(err);
 
     res.json({ message: "Process updated successfully", process });
   });
