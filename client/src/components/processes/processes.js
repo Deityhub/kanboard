@@ -16,8 +16,7 @@ class Processes extends Component {
     name: this.props.board.name,
     task: "",
     updateBoardOpen: false,
-    createProcessOpen: false,
-    errorOpen: false
+    createProcessOpen: false
   };
 
   boardId = this.props.match.params.boardId;
@@ -88,7 +87,7 @@ class Processes extends Component {
 
   render() {
     let { board, loading, error, gettingBoard } = this.props;
-    let { title, name, updateBoardOpen, createProcessOpen, errorOpen } = this.state;
+    let { title, name, updateBoardOpen, createProcessOpen } = this.state;
 
     if (error == "You need to login") {
       this.props.logoutUser();
@@ -98,7 +97,7 @@ class Processes extends Component {
       <div className="process">
         <Nav />
 
-        {errorOpen && error && alert(error)}
+        {error && alert(error)}
 
         <section className="process__content">
           {!gettingBoard && (

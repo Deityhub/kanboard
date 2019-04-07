@@ -9,8 +9,7 @@ import "./boards.scss";
 class Boards extends Component {
   state = {
     name: "",
-    formOpen: false,
-    errorOpen: false
+    formOpen: false
   };
   componentDidMount() {
     let loggedIn = localStorage.getItem("kanboarding");
@@ -46,7 +45,7 @@ class Boards extends Component {
 
   render() {
     let { userBoards, loading, error, getBoards } = this.props;
-    let { name, formOpen, errorOpen } = this.state;
+    let { name, formOpen } = this.state;
 
     if (error == "You need to login") {
       this.props.logoutUser();
@@ -56,7 +55,7 @@ class Boards extends Component {
       <div className="board">
         <Nav />
 
-        {errorOpen && error && alert(error)}
+        {error && alert(error)}
 
         <section className="board__content">
           <header>Personal Boards</header>
