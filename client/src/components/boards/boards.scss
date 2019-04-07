@@ -1,26 +1,6 @@
 .board {
   width: 100%;
 
-  &__error {
-    border: 2px solid tomato;
-    border-radius: 5px;
-    position: absolute;
-    top: 40px;
-    right: 2px;
-    z-index: 2000;
-    width: 30rem;
-    background: tomato;
-    color: white;
-    hyphens: auto;
-    padding: 0;
-
-    & > p {
-      padding: 1rem 0;
-      font-size: 1.7rem;
-      text-align: center;
-    }
-  }
-
   & > * {
     padding-left: 2rem;
     padding-right: 2rem;

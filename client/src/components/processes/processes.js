@@ -86,25 +86,6 @@ class Processes extends Component {
     this.props.editUserTask(processId, taskId);
   };
 
-  toggleError = () => {
-    this.timeout = setTimeout(() => {
-      this.setState({
-        errorOpen: false
-      });
-    }, 5000);
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.error !== this.props.error) {
-      this.setState(
-        {
-          errorOpen: true
-        },
-        () => this.toggleError()
-      );
-    }
-  }
-
   render() {
     let { board, loading, error, gettingBoard } = this.props;
     let { title, name, updateBoardOpen, createProcessOpen, errorOpen } = this.state;
@@ -117,11 +98,7 @@ class Processes extends Component {
       <div className="process">
         <Nav />
 
-        {errorOpen && error && (
-          <aside className="board__error">
-            <p>{error}</p>
-          </aside>
-        )}
+        {errorOpen && error && alert(error)}
 
         <section className="process__content">
           {!gettingBoard && (

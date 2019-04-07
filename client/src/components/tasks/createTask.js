@@ -46,10 +46,6 @@ class CreateTask extends Component {
   }
 }
 
-// TODO
-// handle drag and drop for editing task
-// only modify process key value pair on the task
-
 const mapDispatchToProps = dispatch => ({
   createUserTask: (task, processId) => dispatch(createUserTask(task, processId))
 });
