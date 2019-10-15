@@ -1,4 +1,4 @@
-# Kanboard
+# Kanboard Application
 
 This web application is a simple mini-task manager, which you can use to keep track of processes or tasks you are working on.
 
