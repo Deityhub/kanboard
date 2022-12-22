@@ -16,7 +16,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.4.10"
   },
   "devDependencies": {
